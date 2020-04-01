@@ -6,15 +6,17 @@ if (window.location.pathname === "/") {
 
 function showBiz() {
     /* global moment */
-
+    
     // businessContainer holds all daat
+$.get("/api/seeding",function(data){
+    // console.log("here!!!!!!!!!!!");
 
-    $.get("/api/categories", function (data) {
-        console.log("Categories", data);
-        console.log(data)
-        $(".business-container").append(arrayToTable(data));
-    })
-
+})
+$.get("/api/categories", function (data) {
+    // console.log("Categories", data);
+    // console.log(data)
+    $(".business-container").append(arrayToTable(data));
+})
 };
 
 
