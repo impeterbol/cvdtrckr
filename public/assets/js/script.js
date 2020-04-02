@@ -5,17 +5,9 @@ if (window.location.pathname === "/") {
 
 
 
-    /*Scroll to top when arrow up clicked BEGIN*/
-    $(window).scroll(function() {
-        var height = $(window).scrollTop();
-        if (height > 100) {
-            $("#back2Top").fadeIn();
-        } else {
-            $("#back2Top").fadeOut();
-        }
-    });
-
+  
     $(document).ready(function() {
+      
         const today = moment();
         const dayZero = moment("01/22/2020", "MM/DD/YYYY");
         const daysSinceOutbreak = today.diff(dayZero, "days");
@@ -27,21 +19,35 @@ if (window.location.pathname === "/") {
         displayTable(yesterday);
 
         $("#dataDays").html(daysSinceOutbreak);
-        $(".todayDate").html(today.format("M-D-YYYY"));
+        $("#todayDate1").html(today.format("M-D-YYYY"));
 
         $("#submitBtn").on("click", function(event) {
             event.preventDefault();
 
             $("#today").empty();
             displayTable($("#datePicker1").val());
+            scrollToTable();
         });
 
-        $("#back2Top").click(function(event) {
-            event.preventDefault();
-            $("html, body").animate({ scrollTop: 0 }, "slow");
-            return false;
-        });
+       
     });
+
+    $("#back2Top").click(function(event) {
+        event.preventDefault();
+        $("html, body").animate({ scrollTop: 0 }, "slow");
+        return false;
+    });
+
+      /*Scroll to top when arrow up clicked BEGIN*/
+    //   $(window).scroll(function() {
+    //     var height = $(window).scrollTop();
+    //     if (height > 100) {
+    //         $("#back2Top").fadeIn();
+    //     } else {
+    //         $("#back2Top").fadeOut();
+    //     }
+    // });
+
 
     function datePicker(today) {
         $("#datePicker1").attr("max", today.format("YYYY-MM-DD"));
@@ -50,22 +56,22 @@ if (window.location.pathname === "/") {
     function displayTable(date) {
         const searchDate = convertDate(date);
         const searchUrl = `https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports/${searchDate}.csv`;
-        console.log(date);
+        // console.log(date);
         $.get(searchUrl).then(function(results) {
             TABLE_DATA = results.split("\n")
             arrayToTable()
         });
         //dataForToday();
 
-        function dataForToday() {
-            Papa.parse(searchUrl, {
-                download: true,
-                complete: function(results) {
-                    $("#today").append(arrayToTable(results.data));
-                    scrollToTable();
-                }
-            });
-        }
+        // function dataForToday() {
+        //     Papa.parse(searchUrl, {
+        //         download: true,
+        //         complete: function(results) {
+        //             $("#today").append(arrayToTable(results.data));
+        //             scrollToTable();
+        //         }
+        //     });
+        // }
 
         //end scrolling to the results for mobile
     }
@@ -96,16 +102,9 @@ if (window.location.pathname === "/") {
         //     table.append(row);
         //   });
         $("#today").append(table);
-        scrollToTable()
+      
     }
-    //scrolling to the results for mobile
-    function scrollToTable() {
-        $("html, body").animate({
-                scrollTop: $("#tableFixHead").offset()
-            },
-            1000
-        );
-    }
+ 
     // end capture user date choice
 
     //converting user input to use for the search
@@ -114,23 +113,15 @@ if (window.location.pathname === "/") {
         return [p[1], p[2], p[0]].join("-");
     }
 
-    function zoomin() {
-        var myImg = document.getElementById("sky");
-        var currWidth = myImg.clientWidth;
-        if (currWidth == 500) {
-            alert("Maximum zoom-in level reached.");
-        } else {
-            myImg.style.width = currWidth + 50 + "px";
-        }
-    }
 
-    function zoomout() {
-        var myImg = document.getElementById("sky");
-        var currWidth = myImg.clientWidth;
-        if (currWidth == 50) {
-            alert("Maximum zoom-out level reached.");
-        } else {
-            myImg.style.width = currWidth - 50 + "px";
-        }
-    }
+   //scrolling to the results for mobile
+   function scrollToTable() {
+    $("html, body").animate({
+            scrollTop: $("#today").offset().top
+        },
+        1000
+    );
+}
+
+   
 }

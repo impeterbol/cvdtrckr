@@ -1,7 +1,15 @@
-* {
-    padding: 0;
+
+ /* *{   padding: 0;
     margin: 0;
-}
+} */
+    body{
+        font-family: 'Open Sans', sans-serif;
+    }
+
+
+/* .containerMain{
+margin-botton:50px;
+} */
 
 #back2Top {
     width: 55px;
@@ -39,7 +47,7 @@ table {
     border-spacing: 10px;
     border-collapse: collapse;
     width: 100%;
-    font-size: small;
+    font-size: medium;
 }
 
 table td {
@@ -57,32 +65,33 @@ footer {
 /* Prayer styling */
 
 #prayersJumbotron {
-    background-image: url(../img/row_of_candles.jpg);
-    font-family: "Arial black";
-    font-size: 400%;
-    color: ivory;
+    /* background-image: url(../img/row_of_candles.jpg); */
+    /* font-family: "Open Sans"; */
+    font-size: 300%;
+    color: rgb(0, 0, 0);
+    
 }
 
 
-/* #prayerForm {
+ /* #prayerForm {
     width: 90vw;
     margin-top: 5%;
-}
+} */
 
-.prayer {
+/* .prayer {
     padding: 1%;
     border-bottom: black solid 1px;
-}
+} */
 
-.prayerContainer {
+/* .prayerContainer {
     padding: 3%;
     display: flex;
     justify-content: center;
-}
-
-#prevPrayers {
-    width: 90vw
 } */
+
+/* #prevPrayers {
+    width: 90vw
+}  */
 
 
 /* next prayer button */

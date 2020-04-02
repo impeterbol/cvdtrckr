@@ -1,6 +1,12 @@
 if (window.location.pathname === "/") {
     $(document).ready(showBiz());
-}
+    $("#redmondBusiness").on("click",function(){
+        $.get("/api/seeding",function(data){
+            // console.log("here!!!!!!!!!!!");
+        
+        })
+    })
+};
 
 
 
@@ -8,10 +14,7 @@ function showBiz() {
     /* global moment */
     
     // businessContainer holds all daat
-$.get("/api/seeding",function(data){
-    // console.log("here!!!!!!!!!!!");
 
-})
 $.get("/api/categories", function (data) {
     // console.log("Categories", data);
     // console.log(data)
